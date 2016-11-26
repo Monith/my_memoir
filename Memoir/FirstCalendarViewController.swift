@@ -8,7 +8,22 @@
 
 import UIKit
 
-class FirstCalendarViewController: UIViewController {
+class FirstCalendarViewController: UIViewController,UITableViewDataSource {
+    
+    var viewEntries: [[String:Any]] = []
+    
+    
+    @IBOutlet weak var dateTitleView: UIView!
+    
+    @IBOutlet weak var currentDateTitleLable: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +44,31 @@ class FirstCalendarViewController: UIViewController {
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view.addGestureRecognizer(swipeUp)
         
-        // Do any additional setup after loading the view.
-
-        // Do any additional setup after loading the view.
+        print(viewEntries)
+        self.tableView.reloadData()
+        tableView.dataSource = self
+        
+        //Set background color of title
+        if viewEntries.count > 0{
+        dateTitleView.backgroundColor = viewEntries[(viewEntries.count - 1)]["title_color"] as? UIColor
+        } else{
+            dateTitleView.backgroundColor = UIColor.white
+        }
+        
+        // get the current date and time
+        let currentDateTime = Date()
+        
+        // initialize the date formatter and set the style
+        let formatter = DateFormatter()
+        // "October 8, 2016"
+        formatter.timeStyle = .none
+        formatter.dateStyle = .long
+        let current_date = formatter.string(from: currentDateTime)
+        
+        currentDateTitleLable.text = "\(current_date)"
+        print("\(current_date)")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,17 +94,39 @@ class FirstCalendarViewController: UIViewController {
             }
         }
     }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+            return viewEntries.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell") as! DayTableViewCell
+        
+        let entry = viewEntries[indexPath.row]
+        
+        let date = entry["date_time"] as! Date
+        // initialize the date formatter and set the style
+        let formatter = DateFormatter()
+        // "October 8, 2016"
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        let historic_time = formatter.string(from: date)
+        cell.dateLabel.text = "\(historic_time)"
+        
+        let num_entry = entry["num_entry"] as! Int
+        cell.numEntry.text = "\(num_entry)"
+        
+        let beg_entry = entry["entry"] as! String
+        cell.begEntry.text = beg_entry
+        
+        cell.backgroundColor = entry["background_color"] as! UIColor?
+        
+        return cell
+    }
 
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

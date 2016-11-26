@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		124150A01DE91AED00A3606D /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241509F1DE91AED00A3606D /* DayTableViewCell.swift */; };
 		12786F931DE28AE600B2D778 /* MessageSendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12786F921DE28AE600B2D778 /* MessageSendViewController.swift */; };
 		12786F951DE2911000B2D778 /* HomeTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12786F941DE2911000B2D778 /* HomeTransitionViewController.swift */; };
 		12786F971DE29C0B00B2D778 /* FirstCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12786F961DE29C0B00B2D778 /* FirstCalendarViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1241509F1DE91AED00A3606D /* DayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		12786F921DE28AE600B2D778 /* MessageSendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSendViewController.swift; sourceTree = "<group>"; };
 		12786F941DE2911000B2D778 /* HomeTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTransitionViewController.swift; sourceTree = "<group>"; };
 		12786F961DE29C0B00B2D778 /* FirstCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCalendarViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				7EDCF6521DCA7E0F00299844 /* Assets.xcassets */,
 				7EDCF6541DCA7E0F00299844 /* LaunchScreen.storyboard */,
 				7EDCF6571DCA7E0F00299844 /* Info.plist */,
+				1241509F1DE91AED00A3606D /* DayTableViewCell.swift */,
 			);
 			path = Memoir;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				12786F931DE28AE600B2D778 /* MessageSendViewController.swift in Sources */,
 				7E7FF3411DD739A0005B9CB2 /* Common.swift in Sources */,
+				124150A01DE91AED00A3606D /* DayTableViewCell.swift in Sources */,
 				12786F951DE2911000B2D778 /* HomeTransitionViewController.swift in Sources */,
 				7E7FF3421DD739A0005B9CB2 /* FadeTransition.swift in Sources */,
 				12786F991DE29E9E00B2D778 /* CalendarWeekViewController.swift in Sources */,

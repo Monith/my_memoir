@@ -13,6 +13,15 @@ class HomeTransitionViewController: UIViewController {
     @IBOutlet weak var homeTextView: UITextView!
     @IBOutlet weak var titleView: UIView!
     
+    //Consistent Colors in the homescreen
+    var hue:CGFloat!
+    
+    //Entry Count
+    var entryCount = 1
+    
+    //Data storage for Entries
+    var entries: [[String:Any]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,11 +41,15 @@ class HomeTransitionViewController: UIViewController {
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view.addGestureRecognizer(swipeUp)
         
-        self.view.backgroundColor = generateRandomLightColor()
-        self.homeTextView.backgroundColor = self.view.backgroundColor
-        self.titleView.backgroundColor = generateRandomLightColor()
+        setColors()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        homeTextView.becomeFirstResponder()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,9 +62,8 @@ class HomeTransitionViewController: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
                 print("Swiped right")
-                self.view.backgroundColor = generateRandomLightColor()
-                self.homeTextView.backgroundColor = self.view.backgroundColor
-                self.titleView.backgroundColor = generateRandomLightColor()
+                setColors()
+                textStore()
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
             case UISwipeGestureRecognizerDirection.left:
@@ -69,7 +81,7 @@ class HomeTransitionViewController: UIViewController {
     func generateRandomLightColor() -> UIColor {
         // Randomly generate number in closure
         
-        let hue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        hue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         //let saturation = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
         let saturation: CGFloat = 0.1
         //let brightness = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
@@ -89,6 +101,70 @@ class HomeTransitionViewController: UIViewController {
         return tempColor
     }
     
+    func generateRandomRichColor() -> UIColor {
+        // Randomly generate number in closure
+        
+        //let hue = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        
+        //let saturation = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let saturation: CGFloat = 0.35
+        //let brightness = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        let brightness: CGFloat = 0.95
+        let alpha:CGFloat = 1
+        
+        var tempColor:UIColor
+        
+        
+        tempColor = UIColor.init(hue:hue,
+                                 saturation: saturation,
+                                 brightness: brightness,
+                                 alpha: alpha)
+        
+        
+        //return UIColor(red: red, green: green, blue: blue, alpha: 1)
+        return tempColor
+    }
+    
+    func setColors() {
+        self.view.backgroundColor = generateRandomLightColor()
+        self.homeTextView.backgroundColor = self.view.backgroundColor
+        self.titleView.backgroundColor = generateRandomRichColor()
+        
+    }
+    
+    func textStore() {
+        
+        //Create and store each entry
+        let entry: [String:Any]
+        entry = [
+            "num_entry": entryCount,
+            "entry": homeTextView.text,
+            "date_time": NSDate(),
+            "title_color":self.titleView.backgroundColor,
+            "background_color":self.view.backgroundColor
+        ]
+        
+        //append dictionary array
+        entries.append(entry)
+        
+        //Set home text view to nothing
+        homeTextView.text = ""
+        
+        //Increment entry count
+        entryCount += 1
+        
+        //check
+        print(entries)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationViewController = segue.destination as! FirstCalendarViewController
+        
+        destinationViewController.viewEntries = entries
+        
+    }
     
     
 }
