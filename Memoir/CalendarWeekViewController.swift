@@ -44,9 +44,9 @@ class CalendarWeekViewController: UIViewController {
                 print("Swiped right")
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
-                performSegue(withIdentifier: "DayViewSegue", sender: UISwipeGestureRecognizerDirection.down)
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
+                performSegue(withIdentifier: "DayViewSegue", sender: UISwipeGestureRecognizerDirection.left)
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
