@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstCalendarViewController: UIViewController,UITableViewDataSource {
+class FirstCalendarViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var viewEntries: [[String:Any]] = []
     
@@ -19,10 +19,8 @@ class FirstCalendarViewController: UIViewController,UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
-
-    
+    let cellReuseIdentifier = "cell"
+    let cellSpacingHeight: CGFloat = 5
     
 
     override func viewDidLoad() {
@@ -44,16 +42,21 @@ class FirstCalendarViewController: UIViewController,UITableViewDataSource {
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view.addGestureRecognizer(swipeUp)
         
-        print(viewEntries)
+        //Set table view to reference needed selves
         self.tableView.reloadData()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.dataSource = self
+        tableView.delegate = self
         
         //Set background color of title
         if viewEntries.count > 0{
-        dateTitleView.backgroundColor = viewEntries[(viewEntries.count - 1)]["title_color"] as? UIColor
+        dateTitleView.backgroundColor = viewEntries[(viewEntries.count - 1)]["background_color"] as? UIColor
+        tableView.backgroundColor = viewEntries[(viewEntries.count - 1)]["background_color"] as? UIColor
+        self.view.backgroundColor = viewEntries[(viewEntries.count - 1)]["background_color"] as? UIColor
         } else{
             dateTitleView.backgroundColor = UIColor.white
         }
+        
         
         // get the current date and time
         let currentDateTime = Date()
@@ -107,6 +110,7 @@ class FirstCalendarViewController: UIViewController,UITableViewDataSource {
         
         let entry = viewEntries[indexPath.row]
         
+        //Set time in cell
         let date = entry["date_time"] as! Date
         // initialize the date formatter and set the style
         let formatter = DateFormatter()
@@ -116,15 +120,33 @@ class FirstCalendarViewController: UIViewController,UITableViewDataSource {
         let historic_time = formatter.string(from: date)
         cell.dateLabel.text = "\(historic_time)"
         
-        let num_entry = entry["num_entry"] as! Int
-        cell.numEntry.text = "\(num_entry)"
+        //Set entry number
+        //let num_entry = entry["num_entry"] as! Int
+        //cell.numEntry.text = "\(num_entry)"
         
+        //Set beggining of entry
         let beg_entry = entry["entry"] as! String
         cell.begEntry.text = beg_entry
         
-        cell.backgroundColor = entry["background_color"] as! UIColor?
+        //Set cell background color
+        if viewEntries.count > 0{
+            cell.backgroundColor = viewEntries[(viewEntries.count - 1)]["title_color"] as? UIColor
+        } else{
+            cell.backgroundColor = UIColor.white
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let rect = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44)
+        let footerView = UIView(frame:rect)
+        footerView.backgroundColor = UIColor.clear
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
     }
 
     

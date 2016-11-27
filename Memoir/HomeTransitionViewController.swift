@@ -70,6 +70,7 @@ class HomeTransitionViewController: UIViewController {
                 print("Swiped left")
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
+                textStore()
                 performSegue(withIdentifier: "TodaySegue", sender: UISwipeGestureRecognizerDirection.up)
                 
             default:
