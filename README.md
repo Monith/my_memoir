@@ -20,9 +20,9 @@ Personal diary attached to my calendar, using Google calendar API and a native c
 ![2016 10 30 Memoir app mockup](2016 10 30 Memoir app mockup.jpg)
 
 ### Wireframes W4
-![Launchscreen](assets/W4 Group - Memoir app mockup 1. Launchscreen.png)
-![Onboarding1](assets/W4 Group - Memoir app mockup 2. onboarding1.png)
-![Onboarding2](assets/W4 Group - Memoir app mockup 2. onboarding2.png)
+![Launchscreen](Assets/W4 Group - Memoir app mockup 1. Launchscreen.png)
+![Onboarding1](Assets/W4 Group - Memoir app mockup 2. onboarding1.png)
+![Onboarding2](Assets/W4 Group - Memoir app mockup 2. onboarding2.png)
 ![Onboarding3](assets/W4 Group - Memoir app mockup 2. onboarding3.png)
 ![Signup](assets/W4 Group - Memoir app mockup 3. Sign Up.png)
 ![Writing view](assets/W4 Group - Memoir app mockup 4.1 Writing view.png)
