@@ -15,6 +15,9 @@
 ### App Description
 Personal diary attached to my calendar, using Google calendar API and a native calendar.
 
+### Most up to date GIF of app
+![Gif](memoir_gif.gif)
+
 
 ### Wireframes W3
 ![2016 10 30 Memoir app mockup](Assets/2016 10 30 Memoir app mockup.jpg)
@@ -36,15 +39,15 @@ Personal diary attached to my calendar, using Google calendar API and a native c
 
 
 ### User Stories
-* [] 1. "Start Writing" View Controller (initial View Controller)
-    * [] As a user I want to immediately come in and begin taking notes
+* [ ] 1. "Start Writing" View Controller (initial View Controller)
+    * [ ] As a user I want to immediately come in and begin taking notes
         * [X] Automatically Select Text field and toggle keyboard when view loaded - Sophia
         * [X] If I swipe right, then the text is recorded and stored in an array - Monith
-		* [] This text is also stored using NSDefaults so that it is persistent through user sessions - Namrata
-		* [] Once I swipe right there are three indications that the text has been stored:
+		* [ ] This text is also stored using NSDefaults so that it is persistent through user sessions - Namrata
+		* [ ] Once I swipe right there are three indications that the text has been stored:
 			* [X] The view controller and header change colors - Monith
-			* [] There is a small animation that pops up briefly notifying the user that the text has been stored
-			* [] Text animates off screen (flies off right)
+			* [ ] There is a small animation that pops up briefly notifying the user that the text has been stored
+			* [ ] Text animates off screen (flies off right)
 
 * [ ] 2. Animation from any "Read Only" VC to the corresponding "Today" VC
     * [X] UI Pan Gesture down reveals "Today" VC - Namrata
